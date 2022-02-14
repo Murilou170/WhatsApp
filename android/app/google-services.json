@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901325043214",
+    "project_id": "whatsapp-edeed",
+    "storage_bucket": "whatsapp-edeed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901325043214:android:392d2eef1ecbcf01b9ae5f",
+        "android_client_info": {
+          "package_name": "com.example.zipzop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901325043214-78682tvc0g8b7hmhu21rvf8akj5imf2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzpyV7xwIkOfp2yb0DtBRbCPLL2gtuy5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901325043214-78682tvc0g8b7hmhu21rvf8akj5imf2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
