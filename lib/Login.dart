@@ -111,6 +111,7 @@ class _LoginState extends State<Login> {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(32))),
+                  obscureText: true,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 16, bottom: 10),
