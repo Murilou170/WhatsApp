@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   _validarCampos() {
     //Recupera dados dos campos
 
-    String email = _controllerEmail.text;
+    String email = _controllerEmail.text.trim();
     String senha = _controllerSenha.text;
 
     if (email.isNotEmpty && email.contains("@")) {
@@ -111,6 +111,7 @@ class _LoginState extends State<Login> {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(32))),
+                  obscureText: true,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 16, bottom: 10),

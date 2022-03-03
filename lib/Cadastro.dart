@@ -23,7 +23,7 @@ class _CadastroState extends State<Cadastro> {
     //Recupera dados dos campos
 
     String nome = _controllerNome.text;
-    String email = _controllerEmail.text;
+    String email = _controllerEmail.text.trim();
     String senha = _controllerSenha.text;
 
     if (nome.isNotEmpty) {
