@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:zipzop/Mensagens.dart';
 import '../model/Usuario.dart';
 
 class AbaContatos extends StatefulWidget {
@@ -13,22 +13,17 @@ class AbaContatos extends StatefulWidget {
 }
 
 class _AbaContatosState extends State<AbaContatos> {
-
   String? _idUsuarioLogado;
   String? _emailUsuarioLogado;
 
-
   Future<List<Usuario>> _recuperarContatos() async {
-
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     QuerySnapshot querySnapshot = await db.collection("usuarios").get();
 
-
     List<Usuario> listaUsuarios = [];
 
     for (DocumentSnapshot item in querySnapshot.docs) {
-
       Map dadosmap = {};
       var dados = item.data();
       dadosmap = dados as Map;
@@ -41,11 +36,9 @@ class _AbaContatosState extends State<AbaContatos> {
       usuario.email = dados["email"];
       usuario.nome = dados["nome"];
 
-
       listaUsuarios.add(usuario);
     }
     return listaUsuarios;
-
   }
 
   _recuperarDadosUsuario() async {
@@ -54,7 +47,6 @@ class _AbaContatosState extends State<AbaContatos> {
     var usuariologado = FirebaseAuth.instance.currentUser;
     _idUsuarioLogado = usuariologado!.uid;
     _emailUsuarioLogado = usuariologado.email;
-
   }
 
   @override
@@ -86,23 +78,27 @@ class _AbaContatosState extends State<AbaContatos> {
             return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (_, indice) {
-
-
                   List<Usuario> listaItens = snapshot.data!;
                   Usuario usuario = listaItens[indice];
 
-
                   return ListTile(
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Mensagens(usuario)));
+                    },
+                    contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    leading: CircleAvatar(
+                      maxRadius: 30,
+                      backgroundColor: Colors.green,
+                    ),
                     title: Text(
                       usuario.nome,
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   );
                 });
-
         }
-
       },
     );
   }
