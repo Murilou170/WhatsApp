@@ -83,7 +83,7 @@ class _AbaContatosState extends State<AbaContatos> {
 
                   return ListTile(
                     onTap: () {
-                      Navigator.pushReplacement(context,
+                      Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Mensagens(usuario)));
                     },
                     contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
