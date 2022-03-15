@@ -14,7 +14,11 @@ class Mensagens extends StatefulWidget {
 
 class _MensagensState extends State<Mensagens> {
 
+List<String> listaMensagens = [
+"ola murilo",
+  "ola mundo",
 
+];
   TextEditingController _controllerMensagem = TextEditingController();
   _enviarMensagem(){}
 
@@ -42,7 +46,7 @@ class _MensagensState extends State<Mensagens> {
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32)
+                    borderRadius: BorderRadius.circular(4.0)
                    ),
               prefixIcon: IconButton(
                   icon: Icon(Icons.camera_alt_outlined),
@@ -55,7 +59,7 @@ class _MensagensState extends State<Mensagens> {
 
           FloatingActionButton(
             backgroundColor: Color(0xff075E54),
-            child: Icon(Icons.send_outlined, color: Colors.yellow,),
+            child: Icon(Icons.send_outlined, color: Colors.lightBlueAccent,),
             mini: true,
             onPressed: _enviarMensagem,
           )
@@ -63,7 +67,29 @@ class _MensagensState extends State<Mensagens> {
       ),
     );
 
+    var listView = Expanded(child: ListView.builder(itemCount: 2,
+        itemBuilder: (context, indice){
 
+      double larguraContainer = MediaQuery.of(context).size.width * 0.8;
+
+        return Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: EdgeInsets.all(6),
+            child: Container(
+              width: larguraContainer,
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.all(Radius.circular(8))
+              ),
+              child: Text(listaMensagens[indice] ),
+            ),
+          ),
+        );
+        }
+        ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -83,8 +109,8 @@ class _MensagensState extends State<Mensagens> {
             padding: EdgeInsets.all(16),
             child: Column(
             children: [
-              caixaMensagem
-
+              listView,
+              caixaMensagem,
             ],
           ),
         )
