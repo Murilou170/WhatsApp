@@ -12,10 +12,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController _controllerEmail =
-      TextEditingController();
-  TextEditingController _controllerSenha =
-      TextEditingController();
+  TextEditingController _controllerEmail = TextEditingController();
+  TextEditingController _controllerSenha = TextEditingController();
   String _mensagemErro = "";
 
   _validarCampos() {
@@ -55,13 +53,32 @@ class _LoginState extends State<Login> {
         .signInWithEmailAndPassword(
             email: usuario.email, password: usuario.senha)
         .then((currentUser) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
     }).catchError((error) {
       setState(() {
         _mensagemErro =
             "Erro ao autenticar usuário, verifique e-mail e senha e tente novamente";
       });
     });
+  }
+
+  Future _verificarUsuarioLogado() async {
+
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      await new Future.delayed(new Duration(milliseconds: 2500));
+      {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    _verificarUsuarioLogado();
+    super.initState();
   }
 
   @override
@@ -87,7 +104,6 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.only(bottom: 8),
                   child: TextField(
                     controller: _controllerEmail,
-                    autofocus: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -101,7 +117,6 @@ class _LoginState extends State<Login> {
                 ),
                 TextField(
                   controller: _controllerSenha,
-                  autofocus: true,
                   keyboardType: TextInputType.text,
                   style: TextStyle(fontSize: 20),
                   decoration: InputDecoration(
