@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:zipzop/model/Mensagem.dart';
 import 'model/Usuario.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Mensagens extends StatefulWidget {
 
@@ -14,15 +17,37 @@ class Mensagens extends StatefulWidget {
 
 class _MensagensState extends State<Mensagens> {
 
+  late String _idUsuarioLogado;
+
 List<String> listaMensagens = [
-"ola murilo",
-  "ola mundo",
+
 
 ];
   TextEditingController _controllerMensagem = TextEditingController();
-  _enviarMensagem(){}
+  _enviarMensagem(){
+
+    String textoMensagem = _controllerMensagem.text;
+    if(textoMensagem.isNotEmpty){
+
+
+
+      Mensagem mensagem = Mensagem();
+      mensagem.idUsuario = "";
+      mensagem.mensagem  = textoMensagem;
+      mensagem.urlImagem = "";
+      mensagem.tipo      = "texto";
+
+    }
+
+  }
 
   _enviarFoto(){}
+
+    _recuperarDadosUsuario() async{
+
+      var usuarioLogado = FirebaseAuth.instance.currentUser;
+    _idUsuarioLogado = usuarioLogado!.uid;
+}
 
   @override
   Widget build(BuildContext context) {

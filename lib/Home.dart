@@ -25,10 +25,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     });
   }
 
+  Future _verificarUsuarioLogado() async {
+
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      await new Future.delayed(new Duration(milliseconds: 2500));
+      {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Login()));
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-
+    _verificarUsuarioLogado();
     _recuperarDadosUsuario();
     _tabController = TabController(length: 2, vsync: this);
   }
@@ -43,7 +55,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         break;
     }
 
-    //print("Item escolhido: " + itemEscolhido);
   }
 
   _deslogarUsuario() async {
