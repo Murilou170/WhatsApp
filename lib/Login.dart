@@ -28,8 +28,8 @@ class _LoginState extends State<Login> {
           _mensagemErro = "";
         });
 
-        String nome = "";
-        Usuario usuario = Usuario(nome, email, senha);
+
+        Usuario usuario = Usuario();
         usuario.email = email;
         usuario.senha = senha;
 

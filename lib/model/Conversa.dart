@@ -2,12 +2,12 @@
 
 class Conversa {
 
-  String _nome;
-  String _mensagem;
-  String _caminhoFoto;
+  late String _nome;
+  late String _mensagem;
+  late String _caminhoFoto;
 
 
-  Conversa(this._nome, this._mensagem, this._caminhoFoto);
+  Conversa();
 
   String get nome => _nome;
 

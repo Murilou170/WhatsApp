@@ -28,13 +28,14 @@ class _AbaContatosState extends State<AbaContatos> {
       var dados = item.data();
       dadosmap = dados as Map;
 
-      String email = "";
-      String nome = "";
-      String senha = "";
-      Usuario usuario = Usuario(email, nome, senha);
+
+      Usuario usuario = Usuario();
       if (dados["email"] == _emailUsuarioLogado) continue;
+
+      usuario.idUsuario = item.id;
       usuario.email = dados["email"];
       usuario.nome = dados["nome"];
+
 
       listaUsuarios.add(usuario);
     }
@@ -42,7 +43,6 @@ class _AbaContatosState extends State<AbaContatos> {
   }
 
   _recuperarDadosUsuario() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
 
     var usuariologado = FirebaseAuth.instance.currentUser;
     _idUsuarioLogado = usuariologado!.uid;

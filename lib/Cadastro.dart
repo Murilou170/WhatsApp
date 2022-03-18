@@ -33,7 +33,7 @@ class _CadastroState extends State<Cadastro> {
             _mensagemErro = "";
           });
 
-          Usuario usuario = Usuario(nome, email, senha);
+          Usuario usuario = Usuario();
           usuario.nome = nome;
           usuario.email = email;
           usuario.senha = senha;

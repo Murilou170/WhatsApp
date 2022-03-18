@@ -1,12 +1,13 @@
 
 class Usuario{
 
-  String _nome;
-  String _email;
-  String _senha;
+  late String _idUsuario;
+  late String _nome;
+  late String _email;
+  late String _senha;
 
 
-  Usuario(this._nome, this._email, this._senha);
+  Usuario();
 
   Map<String, dynamic> toMap(){
 
@@ -15,6 +16,13 @@ class Usuario{
       "email" : this.email,
     };
 return map;
+  }
+
+
+  String get idUsuario => _idUsuario;
+
+  set idUsuario(String value) {
+    _idUsuario = value;
   }
 
   String get senha => _senha;

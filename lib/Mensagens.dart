@@ -32,12 +32,20 @@ List<String> listaMensagens = [
 
 
       Mensagem mensagem = Mensagem();
-      mensagem.idUsuario = "";
+      mensagem.idUsuario = _idUsuarioLogado;
       mensagem.mensagem  = textoMensagem;
       mensagem.urlImagem = "";
       mensagem.tipo      = "texto";
 
+      _salvarMensagem();
+
     }
+
+  }
+
+  _salvarMensagem(){
+
+
 
   }
 
@@ -47,7 +55,15 @@ List<String> listaMensagens = [
 
       var usuarioLogado = FirebaseAuth.instance.currentUser;
     _idUsuarioLogado = usuarioLogado!.uid;
+
 }
+@override
+  void initState() {
+    super.initState();
+    _recuperarDadosUsuario();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
