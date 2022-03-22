@@ -33,6 +33,8 @@ class _MensagensState extends State<Mensagens> {
       mensagem.tipo = "texto";
 
       _salvarMensagem(_idUsuarioLogado, _idUsuarioDestinatario, mensagem);
+
+      _salvarMensagem(_idUsuarioDestinatario, _idUsuarioLogado, mensagem);
     }
   }
 
