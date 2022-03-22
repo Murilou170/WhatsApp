@@ -31,6 +31,7 @@ class _MensagensState extends State<Mensagens> {
       mensagem.mensagem = textoMensagem;
       mensagem.urlImagem = "";
       mensagem.tipo = "texto";
+      mensagem.time = DateTime.now().toUtc();
 
       _salvarMensagem(_idUsuarioLogado, _idUsuarioDestinatario, mensagem);
 
@@ -108,6 +109,7 @@ class _MensagensState extends State<Mensagens> {
             .collection("mensagens")
             .doc(_idUsuarioLogado)
             .collection(_idUsuarioDestinatario)
+            .orderBy('time', descending: false)
             .snapshots(),
         builder: (context, snapshot){
         switch (snapshot.connectionState) {
@@ -143,18 +145,27 @@ class _MensagensState extends State<Mensagens> {
 
 
                       double larguraContainer =
-                          MediaQuery.of(context).size.width * 0.8;
+                          MediaQuery.of(context).size.width * 0.5;
+
+                      Alignment alinhamento = Alignment.centerRight;
+                      Color cor = Color(0xffd2ffa5);
+
+                      if(_idUsuarioLogado != item["idUsuario"]){
+                        alinhamento = Alignment.centerLeft;
+                        cor = Colors.white;
+                      }
+
 
 
                       return Align(
-                        alignment: Alignment.centerRight,
+                        alignment: alinhamento,
                         child: Padding(
                           padding: EdgeInsets.all(6),
                           child: Container(
                             width: larguraContainer,
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                                color: Colors.blue,
+                                color: cor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
                             child: Text(item["mensagem"]),

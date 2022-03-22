@@ -7,8 +7,11 @@ class Mensagem {
   late String _mensagem;
   late String _urlImagem;
   late String _tipo;
+  late DateTime _time;
 
   Mensagem();
+
+
 
 
   Map<String, dynamic> toMap() {
@@ -17,8 +20,14 @@ class Mensagem {
       "mensagem": this.mensagem,
       "urlImagem": this.urlImagem,
       "tipo": this.tipo,
+      "time": this.time,
     };
     return map;
+  }
+  DateTime get time => _time;
+
+  set time(DateTime value) {
+    _time = value;
   }
 
   String get tipo => _tipo;
