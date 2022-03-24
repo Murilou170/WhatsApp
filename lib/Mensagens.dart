@@ -50,7 +50,10 @@ class _MensagensState extends State<Mensagens> {
     _controllerMensagem.clear();
   }
 
-  _enviarFoto() {}
+  _enviarFoto() {
+
+
+  }
 
   _recuperarDadosUsuario() async {
     var usuarioLogado = FirebaseAuth.instance.currentUser;
@@ -179,30 +182,6 @@ class _MensagensState extends State<Mensagens> {
         }
       },
       );
-
-
-    var listView = Expanded(
-      child: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (context, indice) {
-            double larguraContainer = MediaQuery.of(context).size.width * 0.8;
-
-            return Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                child: Container(
-                  width: larguraContainer,
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: Text(listaMensagens[indice]),
-                ),
-              ),
-            );
-          }),
-    );
 
     return Scaffold(
         appBar: AppBar(
