@@ -64,6 +64,21 @@ class _MensagensState extends State<Mensagens> {
     _idUsuarioLogado = usuarioLogado!.uid;
 
     _idUsuarioDestinatario = widget.contato.idUsuario;
+    _adicionarListenerMensagens();
+  }
+
+  Stream<QuerySnapshot> _adicionarListenerMensagens(){
+
+    Final stream = db
+        .collection("mensagens")
+        .doc(_idUsuarioLogado)
+        .collection(_idUsuarioDestinatario)
+        .orderBy('time', descending: false)
+        .snapshots();
+
+    stream.listen((dados){
+      _controller.add(dados);
+    });
   }
 
   @override
@@ -112,12 +127,7 @@ class _MensagensState extends State<Mensagens> {
     );
 
     var stream = StreamBuilder(
-        stream: db
-            .collection("mensagens")
-            .doc(_idUsuarioLogado)
-            .collection(_idUsuarioDestinatario)
-            .orderBy('time', descending: false)
-            .snapshots(),
+        stream: _controller.stream,
         builder: (context, snapshot){
         switch (snapshot.connectionState) {
           case ConnectionState.none:
