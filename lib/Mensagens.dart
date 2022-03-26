@@ -26,6 +26,7 @@ class _MensagensState extends State<Mensagens> {
   TextEditingController _controllerMensagem = TextEditingController();
 
   final _controller = StreamController<QuerySnapshot>.broadcast();
+  ScrollController _scrollController = ScrollController();
 
   _enviarMensagem() {
     String textoMensagem = _controllerMensagem.text;
@@ -153,6 +154,7 @@ class _MensagensState extends State<Mensagens> {
             } else {
               return Expanded(
                 child: ListView.builder(
+                  controller: _scrollController,
                     itemCount: querySnapshot!.docs.length,
                     itemBuilder: (context, indice) {
 
