@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zipzop/model/Mensagem.dart';
@@ -22,6 +24,8 @@ class _MensagensState extends State<Mensagens> {
 
   List<String> listaMensagens = [];
   TextEditingController _controllerMensagem = TextEditingController();
+
+  final _controller = StreamController<QuerySnapshot>.broadcast();
 
   _enviarMensagem() {
     String textoMensagem = _controllerMensagem.text;
