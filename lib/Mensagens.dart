@@ -68,9 +68,9 @@ class _MensagensState extends State<Mensagens> {
     _adicionarListenerMensagens();
   }
 
-  Stream<QuerySnapshot> _adicionarListenerMensagens(){
-
-    Final stream = db
+  CircularProgressIndicator _adicionarListenerMensagens() {
+// Adicionei circularProgressIndicato ao invés de Stream<QuerySnapshot> para ter algo com que retornar
+    final stream = db
         .collection("mensagens")
         .doc(_idUsuarioLogado)
         .collection(_idUsuarioDestinatario)
@@ -83,7 +83,8 @@ class _MensagensState extends State<Mensagens> {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       });
     });
-  }
+    return CircularProgressIndicator();
+    }
 
   @override
   void initState() {
