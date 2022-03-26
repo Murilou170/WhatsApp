@@ -79,6 +79,9 @@ class _MensagensState extends State<Mensagens> {
 
     stream.listen((dados){
       _controller.add(dados);
+      Timer(Duration(seconds: 1), (){
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      });
     });
   }
 
