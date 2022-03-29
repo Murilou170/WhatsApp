@@ -59,9 +59,9 @@ class _MensagensState extends State<Mensagens> {
     _controllerMensagem.clear();
   }
 
-  _enviarFoto() {
+  _enviarFoto() async {
 
-    File  imagemSelecionada;
+   final XFile?  imagemSelecionada = await _picker.pickImage(source: ImageSource.gallery);
 
 
   }
