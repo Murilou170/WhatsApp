@@ -13,22 +13,16 @@ class Configuracoes extends StatefulWidget {
 class _ConfiguracoesState extends State<Configuracoes> {
 
   TextEditingController _controllerNome = TextEditingController();
-  late XFile _imagem;
+  late XFile? _imagem;
   late String _idUsuarioLogado;
   late bool _subindoImagem = false;
   late String _urlImagemRecuperada;
 
   Future _recuperarImagem(String origemImagem) async {
 
-    final XFile? imagemSelecionada;
-    switch( origemImagem ){
-      case "camera" :
-        imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);
-        break;
-      case "galeria" :
-        imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.gallery);
-        break;
-    }
+    final ImagePicker _picker = ImagePicker();
+    final XFile? imagemSelecionada = (await _picker.pickImage(source: ImageSource.gallery)) as XFile?;
+
 
     setState(() {
       _imagem = imagemSelecionada;
@@ -166,13 +160,13 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
+                    TextButton(
                       child: Text("Câmera"),
                       onPressed: (){
                         _recuperarImagem("camera");
                       },
                     ),
-                    FlatButton(
+                    TextButton(
                       child: Text("Galeria"),
                       onPressed: (){
                         _recuperarImagem("galeria");
@@ -201,15 +195,17 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 16, bottom: 10),
-                  child: RaisedButton(
+                  child: ElevatedButton(
                       child: Text(
                         "Salvar",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      color: Colors.green,
-                      padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32)),
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32)),
+                        primary: Colors.green,
+                        padding: EdgeInsets.fromLTRB(32, 16, 32, 16)
+                        ),
                       onPressed: () {
                         _atualizarNomeFirestore();
                       }
@@ -223,5 +219,6 @@ class _ConfiguracoesState extends State<Configuracoes> {
     );
   }
 }
+*/
 
- */
+
