@@ -61,7 +61,9 @@ class _MensagensState extends State<Mensagens> {
 
   _enviarFoto() async {
 
-   final XFile?  imagemSelecionada = await _picker.pickImage(source: ImageSource.gallery);
+   //final XFile?  imagemSelecionada = await _picker.pickImage(source: ImageSource.gallery);
+
+   //_uploadImagem();
 
 
   }
@@ -232,3 +234,4 @@ class _MensagensState extends State<Mensagens> {
         ));
   }
 }
+
